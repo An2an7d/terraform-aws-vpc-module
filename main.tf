@@ -152,13 +152,13 @@ resource "aws_route_table_association" "database" {
 }
 
 resource "aws_db_subnet_group" "roboshop" {
-  name       = "${var.project_name}-{var.env}"
+  name       = "${var.project_name}-${var.env}"
   subnet_ids = aws_subnet.database[*].id
 
   tags =merge(
     var.common_tags,
     {
-      Name = "${var.project_name}-{var.env}"
+      Name = "${var.project_name}-${var.env}"
     },
     var.db_subnet_group_tags
   )
